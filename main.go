@@ -83,7 +83,7 @@ func sayPolo(chatID int64) error {
 	return nil
 }
 
-// FInally, the main funtion starts our server on a port
+// main funtion starts our server on a port
 func main() {
 	http.ListenAndServe(":" + os.Getenv("PORT"), http.HandlerFunc(Handler))
 }
