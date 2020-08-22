@@ -1,0 +1,16 @@
+hash: 84be1ea3f5864d0b55cb19e32b9459ca7e95a432eb5fe2baee5d68ed7bc966c1
+updated: 2020-08-22T22:17:01.017612+03:00
+imports:
+- name: github.com/aws/aws-lambda-go
+  version: 55dc88be4cdfaaf4bb4d9f65debd8d4310e0a83c
+  subpackages:
+  - events
+  - lambda
+  - lambda/handlertrace
+  - lambda/messages
+  - lambdacontext
+- name: github.com/pkg/errors
+  version: 614d223910a179a466c1767a985424175c39b465
+- name: github.com/tucnak/telebot
+  version: bd4747d3ef2f947d988d0f04d34c9ec1958a22cd
+testImports: []
