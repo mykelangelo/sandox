@@ -1,6 +1,6 @@
 {
 	"ImportPath": "sandox",
-	"GoVersion": "go1.14",
+	"GoVersion": "go1.14.3",
 	"GodepVersion": "v80",
 	"Packages": [
 		"./..."
