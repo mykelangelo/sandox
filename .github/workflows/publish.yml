@@ -1,7 +1,22 @@
-FROM golang:1.14.3-alpine
-RUN mkdir /app
-ADD . /app
-WORKDIR /app
-RUN go clean --modcache
-RUN go build -o main
-CMD ["/app/main"]
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Docker Image
+        run: docker build . --tag my-image-name:$(date +%s)
+      
+      - name: Publish to Rgistry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with: 
+          name: forbsey/go-github-actions
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
