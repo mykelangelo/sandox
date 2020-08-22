@@ -1,4 +1,4 @@
-package: sandox/src/main
+package: sandox/src/main/main.go
 import:
 - package: github.com/aws/aws-lambda-go
   version: ^1.19.1
