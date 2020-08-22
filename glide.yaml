@@ -1,0 +1,14 @@
+package: sandox
+import:
+- package: github.com/aws/aws-lambda-go
+  version: ^1.19.1
+  subpackages:
+  - events
+  - lambda
+  - lambda/handlertrace
+  - lambda/messages
+  - lambdacontext
+- package: github.com/pkg/errors
+  version: ^0.9.1
+- package: github.com/tucnak/telebot
+  version: ^2.3.3
