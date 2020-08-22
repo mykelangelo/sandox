@@ -70,7 +70,7 @@ func sayPolo(chatID int64) error {
 	}
 
 	// Send a post request with your token
-	res, err := http.Post("https://api.telegram.org/bot"+os.Getenv("bot_token")+"/sendMessage", "application/json", bytes.NewBuffer(reqBytes))
+	res, err := http.Post("https://api.telegram.org/bot" + os.Getenv("bot_token") + "/sendMessage", "application/json", bytes.NewBuffer(reqBytes))
 
 	if err != nil {
 		return err
@@ -85,5 +85,5 @@ func sayPolo(chatID int64) error {
 
 // FInally, the main funtion starts our server on port 3000
 func main() {
-	http.ListenAndServe(":3000", http.HandlerFunc(Handler))
+	http.ListenAndServe(":" + os.Getenv("port"), http.HandlerFunc(Handler))
 }
