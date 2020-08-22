@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"strings"
 )
 
 type webhookReqBody struct {
@@ -28,16 +27,12 @@ func Handler(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	// Check if the message contains the word "marco"
-	// if not, return without doing anything
-	if !strings.Contains(strings.ToLower(body.Message.Text), "marco") {
-		return
-	}
+	fmt.Println(body.Message.Text)
 
-	// If the text contains marco, call the `sayPolo` function, which
+	// If the text contains marco, call the `startGame` function, which
 	// is defined below
-	if err := sayPolo(body.Message.Chat.ID); err != nil {
-		fmt.Println("error in sending reply:", err)
+	if err := startGame(body.Message.Chat.ID); err != nil {
+		fmt.Println("error in starting a game:", err)
 		return
 	}
 
@@ -56,8 +51,8 @@ type sendMessageReqBody struct {
 	Text   string `json:"text"`
 }
 
-// sayPolo takes a chatID and sends "polo" to them
-func sayPolo(chatID int64) error {
+// startGame takes a chatID and sends "polo" to them
+func startGame(chatID int64) error {
 	// Create the request body struct
 	reqBody := &sendMessageReqBody{
 		ChatID: chatID,
