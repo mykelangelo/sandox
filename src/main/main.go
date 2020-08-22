@@ -50,6 +50,7 @@ type SendMessageReqBody struct {
 	ChatID      int64                `json:"chat_id"`
 	Text        string               `json:"text"`
 	ReplyMarkup InlineKeyboardMarkup `json:"reply_markup"`
+	ParseMode   string               `json:"parse_mode"`
 }
 
 // startGame takes a chatID and sends "polo" to them
@@ -68,6 +69,7 @@ func startGame(chatID int64) error {
 		ChatID:      chatID,
 		Text:        "Polo!!",
 		ReplyMarkup: markup,
+		ParseMode:   "HTML",
 	}
 	// Create the JSON body from the struct
 	reqBytes, err := json.Marshal(reqBody)
