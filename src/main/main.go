@@ -5,6 +5,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/aws/aws-lambda-go/lambda"
+	tb "github.com/tucnak/telebot"
 	"net/http"
 	"os"
 )
@@ -92,5 +95,22 @@ func startGame(chatID int64) error {
 
 // main funtion starts our server on a port
 func main() {
-	http.ListenAndServe(":"+os.Getenv("PORT"), http.HandlerFunc(Handler))
+	b, err := tb.NewBot(tb.Settings{
+		Token:       os.Getenv("BOT_TOKEN"),
+		Synchronous: true,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	b.Handle(tb.OnText, func(m *tb.Message) { b.Send(m.Chat, m.Text) })
+
+	lambda.Start(func(req events.APIGatewayProxyRequest) (err error) {
+		var u tb.Update
+		if err = json.Unmarshal([]byte(req.Body), &u); err == nil {
+			b.ProcessUpdate(u)
+		}
+		return
+	})
+	//http.ListenAndServe(":"+os.Getenv("PORT"), http.HandlerFunc(Handler))
 }
