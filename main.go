@@ -45,7 +45,7 @@ func Handler(res http.ResponseWriter, req *http.Request) {
 	fmt.Println("reply sent")
 }
 
-//The below code deals with the process of sending a response message
+// The below code deals with the process of sending a response message
 // to the user
 
 // Create a struct to conform to the JSON body
